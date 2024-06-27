@@ -1,0 +1,30 @@
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Digite o valor de A, B e C, respectivamente: ");
+		double a = sc.nextDouble(), 
+				b = sc.nextDouble(), 
+				c = sc.nextDouble();
+		
+		double areaTriangulo = (a + c) / 2;
+		double areaCirculo = Math.PI * (Math.pow(c, 2));
+		double areaTrapezio = ((a + b) * c) / 2;
+		double areaQuadrado = Math.pow(b, 2);
+		double areaRetangulo = a * b;
+		
+		System.out.printf("Triangulo: %.3f", areaTriangulo);
+		System.out.printf("Circulo: %.3f", areaCirculo);
+		System.out.printf("Trapezio: %.3f", areaTrapezio);
+		System.out.printf("Quadrado: %.3f", areaQuadrado);
+		System.out.printf("Retangulo: %.3f", areaRetangulo);
+
+	}
+
+}
