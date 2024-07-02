@@ -34,28 +34,34 @@ public class Main {
 		System.out.print("Quantos contratos " + t.getNome() + " tem? ");
 		int n = sc.nextInt();
 		sc.nextLine();
-		for(int i = 0; i < n; i++) {
-			System.out.println("Digite os dados do contrato #" + (i+1) + ":");
-			System.out.print("Data: (DD/MM/YYYY): " );
-			String dataString = sc.nextLine();
-			LocalDate data = LocalDate.parse(dataString, fmt);
-			System.out.print("Valor por hora: R$");
-			Double valorPorHora = sc.nextDouble();
-			System.out.print("Duração (horas): ");
-			Integer horas = sc.nextInt();
-			sc.nextLine();			
+		if(n > 0) {
+			for(int i = 0; i < n; i++) {
+				System.out.println("Digite os dados do contrato #" + (i+1) + ":");
+				System.out.print("Data: (DD/MM/YYYY): " );
+				String dataString = sc.nextLine();
+				LocalDate data = LocalDate.parse(dataString, fmt);
+				System.out.print("Valor por hora: R$");
+				Double valorPorHora = sc.nextDouble();
+				System.out.print("Duração (horas): ");
+				Integer horas = sc.nextInt();
+				sc.nextLine();			
+				
+				t.addContrato(new ContratoHora(data, valorPorHora, horas));
+			}
 			
-			t.addContrato(new ContratoHora(data, valorPorHora, horas));
+			System.out.print("Digite o ano e o mês para calcular a renda (MM/YYYY): ");
+			String mesAno = sc.next();
+			sc.nextLine();
+			
+			System.out.println("Nome: " + t.getNome()
+								+ "\nDepartamento: " + t.getDepartamento().getNome()
+								+ "\nRenda de " + mesAno
+								+ ": R$" + String.format("%.2f", t.renda(Integer.valueOf(mesAno.substring(0, 2)), Integer.valueOf(mesAno.substring(3)))));
+		} else {
+			System.out.println("Nome: " + t.getNome()
+								+ "\nDepartamento: " + t.getDepartamento().getNome()
+								+ "\nRenda: R$" + String.format("%.2f", t.getSalarioBase()));
 		}
-		
-		System.out.print("Digite o ano e o mês para calcular a renda (MM/YYYY): ");
-		String mesAno = sc.next();
-		sc.nextLine();
-		
-		System.out.println("Nome: " + t.getNome()
-							+ "\nDepartamento: " + t.getDepartamento().getNome()
-							+ "\nRenda de " + mesAno
-							+ ": " + t.renda(Integer.valueOf(mesAno.substring(0, 2)), Integer.valueOf(mesAno.substring(3))));
 		
 		sc.close();
 
